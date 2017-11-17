@@ -1,4 +1,6 @@
 ﻿using System;
+using Orleans;
+using Orleans.Runtime.Configuration;
 
 namespace Jager.Client
 {
@@ -6,7 +8,12 @@ namespace Jager.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ClientConfiguration clientConfig = ClientConfiguration.LocalhostSilo();
+            IClusterClient client = new ClientBuilder().UseConfiguration(clientConfig).Build();
+            client.Connect().Wait();
+            Console.WriteLine("Connected");
+            Console.ReadLine();
+            client.Dispose();
         }
     }
 }
