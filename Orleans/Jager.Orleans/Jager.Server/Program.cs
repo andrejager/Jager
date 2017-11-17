@@ -9,6 +9,7 @@ namespace Jager.Server
         private static void Main(string[] args)
         {
             var siloConfig = ClusterConfiguration.LocalhostPrimarySilo();
+            
             var silo = new SiloHost("Test Silo", siloConfig);
             silo.InitializeOrleansSilo();
             
